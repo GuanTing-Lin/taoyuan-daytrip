@@ -39,7 +39,7 @@
 
     /* 亮色液態玻璃 (Apple Frosted Glass) */
     .liquid-glass {
-      background: rgba(255, 255, 255, 0.72);
+      background: rgba(255, 255, 255, 0.75);
       backdrop-filter: blur(28px) saturate(180%);
       -webkit-backdrop-filter: blur(28px) saturate(180%);
       border: 1px solid rgba(255, 255, 255, 0.85);
@@ -47,7 +47,7 @@
                   inset 0 1px 2px 0 rgba(255, 255, 255, 0.9);
     }
     .liquid-glass-subtle {
-      background: rgba(243, 244, 246, 0.6);
+      background: rgba(243, 244, 246, 0.7);
       border: 1px solid rgba(255, 255, 255, 0.7);
     }
     .liquid-glass-pill {
@@ -55,12 +55,13 @@
       border: 1px solid rgba(0, 0, 0, 0.06);
     }
 
-    /* 自訂液態晶瑩 Checkbox */
+    /* 自訂液態晶瑩 Checkbox (加大點擊區域) */
     .custom-checkbox {
       appearance: none;
-      border-radius: 6px;
-      width: 1.2rem;
-      height: 1.2rem;
+      border-radius: 7px;
+      width: 1.35rem;
+      height: 1.35rem;
+      min-width: 1.35rem;
       cursor: pointer;
       display: inline-grid;
       place-content: center;
@@ -68,11 +69,11 @@
     }
     .dark .custom-checkbox {
       background: rgba(255, 255, 255, 0.05);
-      border: 1.5px solid rgba(255, 255, 255, 0.2);
+      border: 1.5px solid rgba(255, 255, 255, 0.25);
     }
     .custom-checkbox {
       background: rgba(0, 0, 0, 0.04);
-      border: 1.5px solid rgba(0, 0, 0, 0.15);
+      border: 1.5px solid rgba(0, 0, 0, 0.2);
     }
     .custom-checkbox:checked {
       background: #0284c7 !important;
@@ -81,15 +82,15 @@
     }
     .custom-checkbox:checked::before {
       content: "";
-      width: 0.55rem;
-      height: 0.3rem;
-      border-left: 2px solid #fff;
-      border-bottom: 2px solid #fff;
+      width: 0.6rem;
+      height: 0.35rem;
+      border-left: 2.2px solid #fff;
+      border-bottom: 2.2px solid #fff;
       transform: rotate(-45deg) translate(1px, -1px);
     }
   </style>
 </head>
-<body class="bg-slate-100 dark:bg-[#0b0f17] text-slate-800 dark:text-slate-100 min-h-screen antialiased overflow-x-hidden pb-12 selection:bg-cyan-500/30">
+<body class="bg-slate-100 dark:bg-[#0b0f17] text-slate-800 dark:text-slate-100 min-h-screen antialiased overflow-x-hidden pb-16 selection:bg-cyan-500/30">
 
   <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
     <div class="absolute -top-32 -left-20 w-96 h-96 bg-cyan-400/20 dark:bg-cyan-600/20 rounded-full blur-3xl"></div>
@@ -97,233 +98,236 @@
     <div class="absolute bottom-10 left-10 w-96 h-96 bg-blue-400/15 dark:bg-indigo-600/15 rounded-full blur-3xl"></div>
   </div>
 
-  <main class="relative z-10 max-w-xl mx-auto px-4 sm:px-6 pt-8 space-y-6">
+  <main class="relative z-10 max-w-xl mx-auto px-4 sm:px-6 pt-7 space-y-6">
 
     <div class="flex justify-end">
       <div class="liquid-glass-pill rounded-full p-1 flex items-center gap-1 shadow-sm">
-        <button id="theme-light" onclick="setTheme('light')" class="p-1.5 px-2.5 rounded-full text-xs flex items-center gap-1 text-slate-600 dark:text-slate-400 hover:text-cyan-600 transition">
-          <i data-lucide="sun" class="w-3.5 h-3.5"></i> 亮色
+        <button id="theme-light" onclick="setTheme('light')" class="p-1.5 px-3 rounded-full text-xs sm:text-sm flex items-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-cyan-600 transition">
+          <i data-lucide="sun" class="w-4 h-4"></i> 亮色
         </button>
-        <button id="theme-dark" onclick="setTheme('dark')" class="p-1.5 px-2.5 rounded-full text-xs flex items-center gap-1 text-slate-600 dark:text-slate-400 hover:text-cyan-400 transition">
-          <i data-lucide="moon" class="w-3.5 h-3.5"></i> 深色
+        <button id="theme-dark" onclick="setTheme('dark')" class="p-1.5 px-3 rounded-full text-xs sm:text-sm flex items-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-cyan-400 transition">
+          <i data-lucide="moon" class="w-4 h-4"></i> 深色
         </button>
-        <button id="theme-auto" onclick="setTheme('auto')" class="p-1.5 px-2.5 rounded-full text-xs flex items-center gap-1 text-slate-600 dark:text-slate-400 hover:text-cyan-500 transition">
-          <i data-lucide="smartphone" class="w-3.5 h-3.5"></i> 自動
+        <button id="theme-auto" onclick="setTheme('auto')" class="p-1.5 px-3 rounded-full text-xs sm:text-sm flex items-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-cyan-500 transition">
+          <i data-lucide="smartphone" class="w-4 h-4"></i> 自動
         </button>
       </div>
     </div>
 
-    <header class="liquid-glass rounded-3xl p-6 sm:p-8 text-center space-y-2 relative overflow-hidden">
+    <header class="liquid-glass rounded-3xl p-6 sm:p-8 text-center space-y-2.5 relative overflow-hidden">
       <h1 class="text-2xl sm:text-3xl font-black tracking-tight text-slate-900 dark:text-white">
         桃園大溪龍潭一日遊
       </h1>
       
-      <div class="flex items-center justify-center gap-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-normal">
-        <i data-lucide="calendar" class="w-4 h-4 text-teal-600 dark:text-cyan-400"></i>
+      <div class="flex items-center justify-center gap-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 font-medium">
+        <i data-lucide="calendar" class="w-4 h-4 sm:w-5 sm:h-5 text-teal-600 dark:text-cyan-400"></i>
         <span>2026 年 9 月 6 日 (星期日)</span>
       </div>
     </header>
 
-    <section class="liquid-glass rounded-3xl p-5 space-y-3 relative overflow-hidden">
+    <section class="liquid-glass rounded-3xl p-5 sm:p-6 space-y-3.5 relative overflow-hidden">
       <div class="flex items-center justify-between">
-        <div class="flex items-center gap-2 text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">
-          <i data-lucide="cloud-sun" class="w-4 h-4 text-teal-600 dark:text-cyan-400"></i>
+        <div class="flex items-center gap-2 text-sm font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">
+          <i data-lucide="cloud-sun" class="w-5 h-5 text-teal-600 dark:text-cyan-400"></i>
           <span>即時微氣候監控</span>
         </div>
-        <button onclick="fetchWeather()" class="liquid-glass-pill p-1.5 px-2.5 rounded-full text-[11px] text-slate-600 dark:text-slate-300 hover:text-cyan-600 transition flex items-center gap-1">
-          <i data-lucide="refresh-cw" class="w-3 h-3"></i> 重整
+        <button onclick="fetchWeather()" class="liquid-glass-pill p-1.5 px-3 rounded-full text-xs sm:text-sm text-slate-600 dark:text-slate-300 hover:text-cyan-600 transition flex items-center gap-1.5 font-medium">
+          <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i> 重整
         </button>
       </div>
 
       <div class="grid grid-cols-2 gap-3 pt-1">
-        <div id="weather-daxi" class="liquid-glass-subtle rounded-2xl p-3.5 space-y-2">
+        <div id="weather-daxi" class="liquid-glass-subtle rounded-2xl p-4 space-y-2.5">
           <div>
-            <span class="text-[10px] text-slate-500 dark:text-slate-400 font-medium">老街 / 老茶廠</span>
-            <h4 class="text-xs font-bold text-slate-800 dark:text-white">大溪區</h4>
+            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium block mb-0.5">老街 / 老茶廠</span>
+            <h4 class="text-sm font-bold text-slate-900 dark:text-white">大溪區</h4>
           </div>
           <div class="flex items-baseline justify-between">
-            <span class="weather-temp text-2xl font-light tracking-tight text-slate-900 dark:text-white">--°</span>
-            <span class="weather-hum text-[10px] text-teal-700 dark:text-cyan-300 font-medium">濕度: --%</span>
+            <span class="weather-temp text-2xl sm:text-3xl font-light tracking-tight text-slate-900 dark:text-white">--°</span>
+            <span class="weather-hum text-xs text-teal-700 dark:text-cyan-300 font-semibold">濕度: --%</span>
           </div>
-          <div class="weather-desc text-[11px] text-slate-600 dark:text-slate-300 font-normal truncate">載入中...</div>
+          <div class="weather-desc text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-medium truncate">載入中...</div>
         </div>
 
-        <div id="weather-fuxing" class="liquid-glass-subtle rounded-2xl p-3.5 space-y-2">
+        <div id="weather-fuxing" class="liquid-glass-subtle rounded-2xl p-4 space-y-2.5">
           <div>
-            <span class="text-[10px] text-slate-500 dark:text-slate-400 font-medium">天空步道 / 宇內溪</span>
-            <h4 class="text-xs font-bold text-slate-800 dark:text-white">復興山區</h4>
+            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium block mb-0.5">天空步道 / 宇內溪</span>
+            <h4 class="text-sm font-bold text-slate-900 dark:text-white">復興山區</h4>
           </div>
           <div class="flex items-baseline justify-between">
-            <span class="weather-temp text-2xl font-light tracking-tight text-slate-900 dark:text-white">--°</span>
-            <span class="weather-hum text-[10px] text-teal-700 dark:text-cyan-300 font-medium">濕度: --%</span>
+            <span class="weather-temp text-2xl sm:text-3xl font-light tracking-tight text-slate-900 dark:text-white">--°</span>
+            <span class="weather-hum text-xs text-teal-700 dark:text-cyan-300 font-semibold">濕度: --%</span>
           </div>
-          <div class="weather-desc text-[11px] text-slate-600 dark:text-slate-300 font-normal truncate">載入中...</div>
+          <div class="weather-desc text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-medium truncate">載入中...</div>
         </div>
       </div>
     </section>
 
-    <section class="liquid-glass rounded-3xl p-5 space-y-3 relative overflow-hidden">
-      <div class="flex items-center gap-2 text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">
-        <i data-lucide="users" class="w-4 h-4 text-teal-600 dark:text-cyan-400"></i>
+    <section class="liquid-glass rounded-3xl p-5 sm:p-6 space-y-3.5 relative overflow-hidden">
+      <div class="flex items-center gap-2 text-sm font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">
+        <i data-lucide="users" class="w-5 h-5 text-teal-600 dark:text-cyan-400"></i>
         <span>乘車配置 (共 8 人)</span>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-        <div class="liquid-glass-subtle rounded-2xl p-3.5 space-y-2">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
+        <div class="liquid-glass-subtle rounded-2xl p-4 space-y-2.5">
           <div class="flex items-center justify-between">
-            <span class="text-xs font-bold text-slate-800 dark:text-white flex items-center gap-1.5">
-              <span class="w-2 h-2 rounded-full bg-emerald-500"></span> 揚舒車
+            <span class="text-sm font-bold text-slate-800 dark:text-white flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> 揚舒車
             </span>
-            <span class="liquid-glass-pill text-[10px] text-emerald-700 dark:text-emerald-300 px-2 py-0.5 rounded-full font-semibold">5 人</span>
+            <span class="liquid-glass-pill text-xs text-emerald-700 dark:text-emerald-300 px-2.5 py-0.5 rounded-full font-bold">4 人</span>
           </div>
-          <div class="flex flex-wrap gap-1.5">
-            <span class="text-[11px] px-2 py-0.5 rounded-lg bg-black/5 dark:bg-white/5 text-slate-700 dark:text-slate-200">丁丁</span>
-            <span class="text-[11px] px-2 py-0.5 rounded-lg bg-black/5 dark:bg-white/5 text-slate-700 dark:text-slate-200">乃方</span>
-            <span class="text-[11px] px-2 py-0.5 rounded-lg bg-black/5 dark:bg-white/5 text-slate-700 dark:text-slate-200">侑勳</span>
-            <span class="text-[11px] px-2 py-0.5 rounded-lg bg-black/5 dark:bg-white/5 text-slate-700 dark:text-slate-200">婉慈</span>
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs sm:text-sm px-2.5 py-1 rounded-lg bg-black/5 dark:bg-white/5 text-slate-800 dark:text-slate-100 font-medium">丁丁</span>
+            <span class="text-xs sm:text-sm px-2.5 py-1 rounded-lg bg-black/5 dark:bg-white/5 text-slate-800 dark:text-slate-100 font-medium">乃方</span>
+            <span class="text-xs sm:text-sm px-2.5 py-1 rounded-lg bg-black/5 dark:bg-white/5 text-slate-800 dark:text-slate-100 font-medium">侑勳</span>
+            <span class="text-xs sm:text-sm px-2.5 py-1 rounded-lg bg-black/5 dark:bg-white/5 text-slate-800 dark:text-slate-100 font-medium">婉慈</span>
           </div>
         </div>
 
-        <div class="liquid-glass-subtle rounded-2xl p-3.5 space-y-2">
+        <div class="liquid-glass-subtle rounded-2xl p-4 space-y-2.5">
           <div class="flex items-center justify-between">
-            <span class="text-xs font-bold text-slate-800 dark:text-white flex items-center gap-1.5">
-              <span class="w-2 h-2 rounded-full bg-cyan-500"></span> 冠廷車
+            <span class="text-sm font-bold text-slate-800 dark:text-white flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-cyan-500"></span> 冠廷車
             </span>
-            <span class="liquid-glass-pill text-[10px] text-cyan-700 dark:text-cyan-300 px-2 py-0.5 rounded-full font-semibold">3 人</span>
+            <span class="liquid-glass-pill text-xs text-cyan-700 dark:text-cyan-300 px-2.5 py-0.5 rounded-full font-bold">3~4 人</span>
           </div>
-          <div class="flex flex-wrap gap-1.5">
-            <span class="text-[11px] px-2 py-0.5 rounded-lg bg-black/5 dark:bg-white/5 text-slate-700 dark:text-slate-200">禹安</span>
-            <span class="text-[11px] px-2 py-0.5 rounded-lg bg-black/5 dark:bg-white/5 text-slate-700 dark:text-slate-200">和峰</span>
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs sm:text-sm px-2.5 py-1 rounded-lg bg-cyan-500/15 text-cyan-800 dark:text-cyan-200 border border-cyan-500/30 font-bold">冠廷</span>
+            <span class="text-xs sm:text-sm px-2.5 py-1 rounded-lg bg-black/5 dark:bg-white/5 text-slate-800 dark:text-slate-100 font-medium">禹安</span>
+            <span class="text-xs sm:text-sm px-2.5 py-1 rounded-lg bg-black/5 dark:bg-white/5 text-slate-800 dark:text-slate-100 font-medium">和峰</span>
           </div>
         </div>
       </div>
     </section>
 
     <section class="liquid-glass rounded-3xl p-5 sm:p-6 space-y-6 relative overflow-hidden">
-      <div class="flex items-center gap-2 text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">
-        <i data-lucide="compass" class="w-4 h-4 text-teal-600 dark:text-cyan-400"></i>
+      <div class="flex items-center gap-2 text-sm font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">
+        <i data-lucide="compass" class="w-5 h-5 text-teal-600 dark:text-cyan-400"></i>
         <span>行程路線節點</span>
       </div>
 
-      <div class="relative border-l-2 border-slate-200 dark:border-white/10 ml-3 space-y-7 pl-6">
+      <div class="relative border-l-2 border-slate-300 dark:border-white/15 ml-3 space-y-7 pl-6">
 
         <div class="relative group">
-          <span class="absolute -left-[31px] top-1.5 w-2.5 h-2.5 rounded-full bg-teal-500 dark:bg-cyan-400 shadow-[0_0_8px_rgba(20,184,166,0.6)]"></span>
+          <span class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-teal-500 dark:bg-cyan-400 shadow-[0_0_8px_rgba(20,184,166,0.6)]"></span>
           <div class="space-y-1.5">
             <div class="flex items-center justify-between">
-              <span class="text-[11px] font-mono text-teal-800 dark:text-cyan-300 liquid-glass-pill px-2 py-0.5 rounded-md font-semibold">09:30 - 10:00</span>
-              <a href="https://maps.app.goo.gl/dNvHuw9NyDagrSGm6" target="_blank" class="liquid-glass-pill text-[10px] px-2.5 py-0.5 rounded-full text-slate-700 dark:text-slate-300 hover:text-cyan-600 flex items-center gap-1 transition">
-                導航 <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
+              <span class="text-xs sm:text-sm font-mono text-teal-800 dark:text-cyan-300 liquid-glass-pill px-2.5 py-0.5 rounded-md font-bold">09:30 - 10:00</span>
+              <a href="https://maps.app.goo.gl/dNvHuw9NyDagrSGm6" target="_blank" class="liquid-glass-pill text-xs px-3 py-1 rounded-full text-slate-700 dark:text-slate-200 hover:text-cyan-600 flex items-center gap-1 transition font-medium">
+                導航 <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
               </a>
             </div>
-            <h3 class="text-sm font-bold text-slate-900 dark:text-white">各車接送 ＆ 集合點會合</h3>
-            <p class="text-xs text-slate-600 dark:text-slate-400">各車自行掌握接送時間，於大溪國民小學集合。</p>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">各車接送 ＆ 集合點會合</h3>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">各車自行掌握接送時間，於大溪集合會合整裝。</p>
           </div>
         </div>
 
         <div class="relative group">
-          <span class="absolute -left-[31px] top-1.5 w-2.5 h-2.5 rounded-full bg-teal-500 dark:bg-cyan-400 shadow-[0_0_8px_rgba(20,184,166,0.6)]"></span>
+          <span class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-teal-500 dark:bg-cyan-400 shadow-[0_0_8px_rgba(20,184,166,0.6)]"></span>
           <div class="space-y-1.5">
-            <span class="text-[11px] font-mono text-teal-800 dark:text-cyan-300 liquid-glass-pill px-2 py-0.5 rounded-md font-semibold">10:00 - 11:30</span>
-            <h3 class="text-sm font-bold text-slate-900 dark:text-white">大溪橋 ＆ 大溪老街</h3>
-            <p class="text-xs text-slate-600 dark:text-slate-400">大溪中正公園、老阿伯豆干、豆花。</p>
+            <span class="text-xs sm:text-sm font-mono text-teal-800 dark:text-cyan-300 liquid-glass-pill px-2.5 py-0.5 rounded-md font-bold">10:00 - 11:30</span>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">大溪橋 ＆ 大溪老街漫步</h3>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">大溪中正公園散步拍照，老街品嚐熱豆干、豆花先墊胃。</p>
           </div>
         </div>
 
         <div class="relative group">
-          <span class="absolute -left-[31px] top-1.5 w-2.5 h-2.5 rounded-full bg-teal-500 dark:bg-cyan-400 shadow-[0_0_8px_rgba(20,184,166,0.6)]"></span>
-          <div class="space-y-2">
+          <span class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-teal-500 dark:bg-cyan-400 shadow-[0_0_8px_rgba(20,184,166,0.6)]"></span>
+          <div class="space-y-2.5">
             <div class="flex items-center justify-between">
-              <span class="text-[11px] font-mono text-teal-800 dark:text-cyan-300 liquid-glass-pill px-2 py-0.5 rounded-md font-semibold">11:30 - 15:00</span>
-              <a href="https://maps.app.goo.gl/J9978yFvb2F2qsFY9" target="_blank" class="liquid-glass-pill text-[10px] px-2.5 py-0.5 rounded-full text-slate-700 dark:text-slate-300 hover:text-cyan-600 flex items-center gap-1 transition">
-                導航 <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
+              <span class="text-xs sm:text-sm font-mono text-teal-800 dark:text-cyan-300 liquid-glass-pill px-2.5 py-0.5 rounded-md font-bold">11:30 - 15:00</span>
+              <a href="https://maps.app.goo.gl/J9978yFvb2F2qsFY9" target="_blank" class="liquid-glass-pill text-xs px-3 py-1 rounded-full text-slate-700 dark:text-slate-200 hover:text-cyan-600 flex items-center gap-1 transition font-medium">
+                導航 <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
               </a>
             </div>
-            <h3 class="text-sm font-bold text-slate-900 dark:text-white">小烏來風景特定區</h3>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">小烏來風景特定區</h3>
             
-            <div class="liquid-glass-subtle rounded-xl p-2.5 text-[11px] text-amber-800 dark:text-amber-200/90 border-amber-500/20 bg-amber-500/5">
-              💡 車程約 45–50 分鐘，午餐可在大溪老街吃，也可買小東西帶到小烏來吃
+            <div class="liquid-glass-subtle rounded-xl p-3 text-xs sm:text-sm text-amber-900 dark:text-amber-200 border-amber-500/20 bg-amber-500/10 leading-relaxed">
+              💡 車程約 45–50 分鐘，建議在老街先補充小吃或在商圈享用簡餐
             </div>
 
-            <div class="flex flex-wrap gap-1.5 pt-0.5">
-              <span class="text-[10px] px-2 py-0.5 rounded-md bg-black/5 dark:bg-white/5 text-slate-700 dark:text-slate-300">天空步道</span>
-              <span class="text-[10px] px-2 py-0.5 rounded-md bg-black/5 dark:bg-white/5 text-slate-700 dark:text-slate-300">宇內溪溫泉戲水區</span>
-              <span class="text-[10px] px-2 py-0.5 rounded-md bg-black/5 dark:bg-white/5 text-slate-700 dark:text-slate-300">龍鳳瀑布</span>
+            <div class="flex flex-wrap gap-2 pt-0.5">
+              <span class="text-xs px-2.5 py-1 rounded-md bg-black/5 dark:bg-white/5 text-slate-800 dark:text-slate-200 font-medium">天空步道</span>
+              <span class="text-xs px-2.5 py-1 rounded-md bg-black/5 dark:bg-white/5 text-slate-800 dark:text-slate-200 font-medium">宇內溪溫泉戲水區</span>
+              <span class="text-xs px-2.5 py-1 rounded-md bg-black/5 dark:bg-white/5 text-slate-800 dark:text-slate-200 font-medium">龍鳳瀑布</span>
             </div>
           </div>
         </div>
 
         <div class="relative group">
-          <span class="absolute -left-[31px] top-1.5 w-2.5 h-2.5 rounded-full bg-slate-400 dark:bg-slate-600"></span>
+          <span class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-slate-400 dark:bg-slate-600"></span>
           <div class="space-y-1.5 opacity-80">
-            <span class="text-[11px] font-mono text-slate-600 dark:text-slate-400 liquid-glass-pill px-2 py-0.5 rounded-md font-medium">15:00 - 15:30 (彈性)</span>
-            <h3 class="text-sm font-bold text-slate-700 dark:text-slate-300">順路備選景點</h3>
-            <p class="text-xs text-slate-500 dark:text-slate-400">三民蝙蝠洞 / 基國派老教堂（依體力與時間）</p>
+            <span class="text-xs sm:text-sm font-mono text-slate-600 dark:text-slate-400 liquid-glass-pill px-2.5 py-0.5 rounded-md font-medium">15:00 - 15:30 (彈性)</span>
+            <h3 class="text-base font-bold text-slate-700 dark:text-slate-300">順路備選景點</h3>
+            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">三民蝙蝠洞 / 基國派老教堂（依體力與時間快閃拍照）</p>
           </div>
         </div>
 
         <div class="relative group">
-          <span class="absolute -left-[31px] top-1.5 w-2.5 h-2.5 rounded-full bg-teal-500 dark:bg-cyan-400 shadow-[0_0_8px_rgba(20,184,166,0.6)]"></span>
+          <span class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-teal-500 dark:bg-cyan-400 shadow-[0_0_8px_rgba(20,184,166,0.6)]"></span>
           <div class="space-y-1.5">
             <div class="flex items-center justify-between">
-              <span class="text-[11px] font-mono text-teal-800 dark:text-cyan-300 liquid-glass-pill px-2 py-0.5 rounded-md font-semibold">15:30 - 17:00</span>
-              <a href="https://www.daxitea.com/" target="_blank" class="liquid-glass-pill text-[10px] px-2.5 py-0.5 rounded-full text-slate-700 dark:text-slate-300 hover:text-cyan-600 flex items-center gap-1 transition">
-                官網 <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
+              <span class="text-xs sm:text-sm font-mono text-teal-800 dark:text-cyan-300 liquid-glass-pill px-2.5 py-0.5 rounded-md font-bold">15:30 - 17:00</span>
+              <a href="https://www.daxitea.com/" target="_blank" class="liquid-glass-pill text-xs px-3 py-1 rounded-full text-slate-700 dark:text-slate-200 hover:text-cyan-600 flex items-center gap-1 transition font-medium">
+                官網 <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
               </a>
             </div>
-            <h3 class="text-sm font-bold text-slate-900 dark:text-white">大溪老茶廠</h3>
-            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-              入廠門票 NT$150/人（可抵 NT$100 當日消費）。 </p>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">大溪老茶廠</h3>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              入廠門票 NT$150/人（可抵 NT$100 當日消費）。享受茶香、拍照並在室內吹冷氣放鬆。
+            </p>
           </div>
         </div>
 
         <div class="relative group">
-          <span class="absolute -left-[31px] top-1.5 w-2.5 h-2.5 rounded-full bg-teal-500 dark:bg-cyan-400 shadow-[0_0_8px_rgba(20,184,166,0.6)]"></span>
+          <span class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-teal-500 dark:bg-cyan-400 shadow-[0_0_8px_rgba(20,184,166,0.6)]"></span>
           <div class="space-y-1.5">
             <div class="flex items-center justify-between">
-              <span class="text-[11px] font-mono text-teal-800 dark:text-cyan-300 liquid-glass-pill px-2 py-0.5 rounded-md font-semibold">17:30 - 19:30</span>
-              <a href="https://maps.app.goo.gl/zBsXkChoZeufG5yv9" target="_blank" class="liquid-glass-pill text-[10px] px-2.5 py-0.5 rounded-full text-slate-700 dark:text-slate-300 hover:text-cyan-600 flex items-center gap-1 transition">
-                導航 <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
+              <span class="text-xs sm:text-sm font-mono text-teal-800 dark:text-cyan-300 liquid-glass-pill px-2.5 py-0.5 rounded-md font-bold">17:30 - 19:30</span>
+              <a href="https://maps.app.goo.gl/zBsXkChoZeufG5yv9" target="_blank" class="liquid-glass-pill text-xs px-3 py-1 rounded-full text-slate-700 dark:text-slate-200 hover:text-cyan-600 flex items-center gap-1 transition font-medium">
+                導航 <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
               </a>
             </div>
-            <h3 class="text-sm font-bold text-slate-900 dark:text-white">晚餐：水煮活魚-洄味辣館</h3>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">晚餐：龍潭活魚料理</h3>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">十一份水煮活魚/活魚多吃，補充一整天的熱量。</p>
           </div>
         </div>
 
         <div class="relative group">
-          <span class="absolute -left-[31px] top-1.5 w-2.5 h-2.5 rounded-full bg-slate-500"></span>
+          <span class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-slate-500"></span>
           <div class="space-y-1">
-            <span class="text-[11px] font-mono text-slate-600 dark:text-slate-400 liquid-glass-pill px-2 py-0.5 rounded-md font-medium">19:30 - </span>
-            <h3 class="text-sm font-bold text-slate-900 dark:text-white">賦歸</h3>
-            <p class="text-xs text-slate-600 dark:text-slate-400">各車各自回程，平安回家！</p>
+            <span class="text-xs sm:text-sm font-mono text-slate-600 dark:text-slate-400 liquid-glass-pill px-2.5 py-0.5 rounded-md font-medium">19:30 - </span>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">快樂賦歸</h3>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">各車踏上歸途，平安回家！</p>
           </div>
         </div>
 
       </div>
     </section>
 
-    <section class="liquid-glass rounded-3xl p-5 space-y-3 relative overflow-hidden">
-      <div class="flex items-center gap-2 text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">
-        <i data-lucide="check-circle" class="w-4 h-4 text-teal-600 dark:text-cyan-400"></i>
+    <section class="liquid-glass rounded-3xl p-5 sm:p-6 space-y-3.5 relative overflow-hidden">
+      <div class="flex items-center gap-2 text-sm font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">
+        <i data-lucide="check-circle" class="w-5 h-5 text-teal-600 dark:text-cyan-400"></i>
         <span>個人攜帶物檢核</span>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
-        <label class="liquid-glass-subtle rounded-xl p-3 flex items-center space-x-3 cursor-pointer select-none hover:bg-black/[0.02] dark:hover:bg-white/[0.04] transition">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+        <label class="liquid-glass-subtle rounded-xl p-3.5 flex items-center space-x-3.5 cursor-pointer select-none hover:bg-black/[0.02] dark:hover:bg-white/[0.04] transition">
           <input type="checkbox" class="custom-checkbox">
-          <span class="text-xs text-slate-800 dark:text-slate-200">換洗衣物 ＆ 擦拭小毛巾</span>
+          <span class="text-xs sm:text-sm font-medium text-slate-800 dark:text-slate-100">換洗衣物 ＆ 擦拭小毛巾</span>
         </label>
-        <label class="liquid-glass-subtle rounded-xl p-3 flex items-center space-x-3 cursor-pointer select-none hover:bg-black/[0.02] dark:hover:bg-white/[0.04] transition">
+        <label class="liquid-glass-subtle rounded-xl p-3.5 flex items-center space-x-3.5 cursor-pointer select-none hover:bg-black/[0.02] dark:hover:bg-white/[0.04] transition">
           <input type="checkbox" class="custom-checkbox">
-          <span class="text-xs text-slate-800 dark:text-slate-200">拖鞋 / 防滑涼鞋 </span>
+          <span class="text-xs sm:text-sm font-medium text-slate-800 dark:text-slate-100">拖鞋 / 防滑涼鞋 (戲水用)</span>
         </label>
-        <label class="liquid-glass-subtle rounded-xl p-3 flex items-center space-x-3 cursor-pointer select-none hover:bg-black/[0.02] dark:hover:bg-white/[0.04] transition">
+        <label class="liquid-glass-subtle rounded-xl p-3.5 flex items-center space-x-3.5 cursor-pointer select-none hover:bg-black/[0.02] dark:hover:bg-white/[0.04] transition">
           <input type="checkbox" class="custom-checkbox">
-          <span class="text-xs text-slate-800 dark:text-slate-200">防曬乳、遮陽帽、太陽眼鏡</span>
+          <span class="text-xs sm:text-sm font-medium text-slate-800 dark:text-slate-100">防曬乳、遮陽帽、太陽眼鏡</span>
         </label>
-        <label class="liquid-glass-subtle rounded-xl p-3 flex items-center space-x-3 cursor-pointer select-none hover:bg-black/[0.02] dark:hover:bg-white/[0.04] transition">
+        <label class="liquid-glass-subtle rounded-xl p-3.5 flex items-center space-x-3.5 cursor-pointer select-none hover:bg-black/[0.02] dark:hover:bg-white/[0.04] transition">
           <input type="checkbox" class="custom-checkbox">
-          <span class="text-xs text-slate-800 dark:text-slate-200">個人藥品 (暈車藥、防蚊液)</span>
+          <span class="text-xs sm:text-sm font-medium text-slate-800 dark:text-slate-100">個人藥品 (暈車藥、防蚊液)</span>
         </label>
       </div>
     </section>
@@ -352,9 +356,9 @@
       
       Object.keys(btns).forEach(key => {
         if (key === mode) {
-          btns[key].className = 'p-1.5 px-2.5 rounded-full text-xs flex items-center gap-1 bg-cyan-500 text-white font-semibold shadow-sm transition';
+          btns[key].className = 'p-1.5 px-3 rounded-full text-xs sm:text-sm flex items-center gap-1.5 bg-cyan-500 text-white font-bold shadow-sm transition';
         } else {
-          btns[key].className = 'p-1.5 px-2.5 rounded-full text-xs flex items-center gap-1 text-slate-600 dark:text-slate-400 hover:text-cyan-500 transition';
+          btns[key].className = 'p-1.5 px-3 rounded-full text-xs sm:text-sm flex items-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-cyan-500 transition font-medium';
         }
       });
     }
